@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
     <head>
         <title>{Title}{block:SearchPage} ({lang:Search results for SearchQuery}){/block:SearchPage}{block:PermalinkPage}{block:PostSummary} — {PostSummary}{/block:PostSummary}{/block:PermalinkPage}</title>
@@ -7,7 +6,9 @@
         <meta name="description" content="{block:IndexPage}{block:Description}{MetaDescription}{/block:Description}{/block:IndexPage}{block:PermalinkPage}{block:PostSummary}{PostSummary}{/block:PostSummary}{/block:PermalinkPage}" />
 
         <meta name="color:Accent" content="#4EA3D0"/>
-        <meta name="font:Body" content="'Helvetica Neue', Helvetica, Arial, sans-serif"/>
+        <meta name="font:Primary Font" content="'Helvetica Neue', Helvetica, Arial, sans-serif"/>
+        <meta name="font:Secondary Font" content="'Times New Roman', Times, serif"/>
+
         <meta name="if:Two column posts" content="1"/>
 
         <!-- Appearance option -->
@@ -26,7 +27,19 @@
         <meta name="if:Show post notes" content="1"/>
         <meta name="if:Show copyright in footer" content="1"/>
         <meta name="text:Disqus Shortname" content="" />
-        <meta name="text:Google Analytics ID" content=""/>
+    	<meta name="text:Dribbble Username" content=""/>
+		<meta name="text:Facebook Username" content=""/>
+		<meta name="text:Flickr Username" content=""/>
+		<meta name="text:Forrst Username" content=""/>
+		<meta name="text:Foursquare Username" content=""/>
+		<meta name="text:GitHub Username" content=""/>
+		<meta name="text:GooglePlus Usernumber" content=""/>
+		<meta name="text:Lastfm Username" content=""/>
+		<meta name="text:LetterBoxd Username" content=""/>
+        <meta name="text:LinkedIn Username" content=""/>
+		<meta name="text:Twitter Username" content=""/>
+		<meta name="text:Vimeo Username" content=""/>
+	    <meta name="text:Google Analytics ID" content=""/>
 
         <link rel="shortcut icon" href="{Favicon}" />
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}"/>
@@ -39,12 +52,18 @@
         <!-- Reset CSS -->
         <link rel="stylesheet" href="http://static.tumblr.com/thpaaos/DIcklyl4z/reset.css" type="text/css">
 
+        <script type="text/javascript" language="javascript">
+            function changeImage(img){
+               document.getElementById('bigImage').src=img;
+            }
+        </script>
+            
         <!-- Theme CSS -->
         <style type="text/css" media="screen">
             body {
                 -webkit-font-smoothing: antialiased;
                 font-size: 15px;
-                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                font-family: {block:IfPrimaryFont}{Font:Primary Font},{/block:IfPrimaryFont} 'Helvetica Neue', Helvetica, Arial, sans-serif;
                 line-height: 24px;
                 margin: 0;
                 padding: 0;
@@ -211,7 +230,7 @@
 
             #posts .post .caption a.disquscomments {
                 font-size: 12px;
-                font-family: 'Times New Roman', Times, serif;
+                font-family: {block:IfSecondaryFont}{font:Secondary Font},{/block:IfSecondaryFont} 'Times New Roman', Times, serif;
                 letter-spacing: 2px;
                 text-transform: uppercase;
                 -webkit-font-smoothing: subpixel-antialiased;
@@ -498,7 +517,7 @@
             .post .post_info {
                 width: auto;
                 font-size: 12px;
-                font-family: 'Times New Roman', Times, serif;
+                font-family: {block:IfSecondaryFont}{font:Secondary Font},{/block:IfSecondaryFont} 'Times New Roman', Times, serif;
                 letter-spacing: 2px;
                 text-transform: uppercase;
                 list-style-type: none;
@@ -509,7 +528,7 @@
 
             .post_info li {
                 line-height: 14px;
-                margin: 10px 0;
+                margin-bottom: 10px;
                 float: left;
             }
 
@@ -545,38 +564,18 @@
             .post_info .notecount:active {
                 background: rgba(0,0,0,.1);
             }
-            
-            /* Post controls */
-
-            .post_controls {
-                border: 1px solid #e8e8e8;
-                border-radius: 3px;
-                float: left;
-                list-style: none;
-                margin: -10px 15px 15px 0;
-            }
-    
-            /* requires high specificity */
-            .post .post_info .post_controls li,
-            .post .post_info.floating .post_controls li {
-                float: left;
-                margin: 0;
-                padding: 7px 15px;
-                height: 21px;
-            }
-
-            .post_controls li:first-child {
-                border-right: 1px solid #e8e8e8;
-            }
-
-            .post .post_info .post_controls li a,
-            .post .post_info.floating .post_controls li a {
-                margin: 0;
-                padding: 0;
-            }
-            
 
             /* Baselines */
+
+            {block:IfPlaceTimestampInLeftColumn}
+            .timestamp.has_caption {
+                margin-top: 6px;
+            }
+
+            .timestamp.has_caption.with_title {
+                margin-top: 18px
+            }
+            {/block:IfPlaceTimestampInLeftColumn}
 
             .tag {
                 color: {Color:Accent};
@@ -677,7 +676,7 @@
 
             #sidebar .links {
                 font-size: 12px;
-                font-family: 'Times New Roman', Times, serif;
+                font-family: {block:IfSecondaryFont}{font:Secondary Font},{/block:IfSecondaryFont} 'Times New Roman', Times, serif;
                 letter-spacing: 2px;
                 text-transform: uppercase;
                 list-style-type: none;
@@ -711,84 +710,28 @@
             .rss .icon { background-position: 0 -24px; }
             .archive .icon { background-position: 0 -36px; }
 
-            .bubble {
-                color: #6f6f6f;
-                font-size: 13px;
-                line-height: 20px;
-                background: #f5f5f5;
-                border: 1px solid #d5d5d5;
-                -webkit-border-radius: 4px;
-                -moz-border-radius: 4px;
-                border-radius: 4px;
-                padding: 8px 12px;
-                position: relative;
-                display: none;
+            #SocialLinks {
+            	width: 188px; 
+            	float: left; 
+            	clear: both;
             }
-
-            #twitter_container .bubble:first-child {
-                display: block;
+            
+            #SocialLinks a {
+            	float: left; 
+            	clear: none; 
+            	margin: 5px 5px 0 0;
+                -webkit-filter: grayscale(100%);
             }
-
-            .bubble .arrow {
-                width: 0; 
-                height: 0; 
-                position: absolute;
-                display: block;
-            }
-
-            .bubble .arrow.fill {
-                border-left: 8px solid transparent;
-                border-right: 8px solid transparent;
-                border-top: 8px solid #f5f5f5;
-                bottom: -8px;
-                left: 25px;
-            }
-
-            .bubble .arrow.border {
-                border-left: 10px solid transparent;
-                border-right: 10px solid transparent;
-                border-top: 10px solid #d5d5d5;
-                bottom: -10px;
-                left: 23px;
-            }
-
-            .bubble:hover {
-                background: #f2f2f2;
-                border-color: #CFCFCF;
-            }
-
-            .bubble:hover .arrow.fill {
-                border-top-color: #F1F1F1;
-            }
-
-            .bubble:hover .arrow.border {
-                border-top-color: #d5d5d5;
-            }
-
-            .twitter_username {
-                max-width: 166px;
-                color: #4c4c4c;
-                font-size: 12px;
-                font-family: 'Times New Roman', Times, serif;
-                letter-spacing: 0.4em;
-                text-transform: uppercase;
-                text-overflow: ellipsis;
-                -webkit-font-smoothing: subpixel-antialiased;
-                margin: 11px 0 0 22px;
-                overflow: hidden;
-                display: inline-block;
-                opacity: 1;
-            }
-
-            .twitter_username:hover {
-                color: {Color:Accent};
+            
+            #SocialLinks a:hover {
+                -webkit-filter: grayscale(0%);
             }
 
             #footer {
                 width: 700px;
                 color: #4C4C4C;
                 font-size: 12px;
-                font-family: 'Times New Roman', Times, serif;
+                font-family: {block:IfSecondaryFont}{font:Secondary Font},{/block:IfSecondaryFont} 'Times New Roman', Times, serif;
                 letter-spacing: 2px;
                 text-transform: uppercase;
                 -webkit-font-smoothing: subpixel-antialiased;
@@ -1116,24 +1059,90 @@
                     <li><a href="{RSS}" class="rss"><span class="icon"></span>rss</a></li>
                     <li><a href="/archive" class="archive"><span class="icon"></span>archive</a></li>
                 </ul>
-
-                {block:Twitter}
-                    <aside id="twitter_container" style="display:none"></aside>
-
-                    <script type="text/javascript">
-                        function recent_tweets(data) {
-                            document.getElementById("twitter_container").innerHTML =
-                            document.getElementById("twitter_container").innerHTML +
-                            '<a class="bubble" href="http://twitter.com/{TwitterUsername}/status/' +
-                            (data[0].id_str ? data[0].id_str : data[0].id) +
-                            '">' + data[0].text +
-                            '<span class="arrow border"></span><span class="arrow fill"></span></a>' +
-                            '<a href="twitter.com/{TwitterUsername}" class="twitter_username">@{TwitterUsername}</a>';
-
-                            document.getElementById("twitter_container").style.display = 'block';
-                        }
-                    </script>
-                {/block:Twitter}
+            
+				<div id="SocialLinks">
+				
+					{block:IfDribbbleUsername}
+					<a href="http://dribbble.com/{text:Dribbble Username}" title="Dribbble">
+						<img src="http://static.tumblr.com/h1zqhzs/lxImlp0zj/dribbble.png" alt="Dribble Icon"/>
+					</a><!-- End Dribbl  e Link -->
+					{/block:IfDribbbleUsername}
+					
+					{block:IfFacebookUsername}
+					<a href="http://facebook.com/{text:Facebook Username}" title="Facebook">
+						<img src="http://static.tumblr.com/h1zqhzs/cyimlp1o2/facebook.png" alt="Facebook Icon"/>
+					</a><!-- End Facebook Link -->
+					{/block:IfFacebookUsername}
+					
+					{block:IfFlickrUsername}
+					<a href="http://flickr.com/{text:Flickr Username}" title="Flickr">
+						<img src="http://static.tumblr.com/h1zqhzs/0YDmlp1re/flickr-2.png" alt="Flickr Icon"/>
+					</a><!-- End Flickr Link -->
+					{/block:IfFlickrUsername}
+					
+					{block:IfForrstUsername}
+					<a href="http://forrst.com/people/{text:Forrst Username}" title="Forrst">
+						<img src="http://static.tumblr.com/ubkenek/rfoluyuxn/forrst-icon.png" alt="Forrst Icon"/>
+					</a><!-- End Forrst Link -->
+					{/block:IfForrstUsername}
+					
+					{block:IfFoursquareUsername}
+					<a href="https://foursquare.com/{text:Foursquare Username}" title="Foursquare">
+						<img src="http://static.tumblr.com/h1zqhzs/fwImlp1sg/foursquare.png" alt="Foursquare Icon"/>
+					</a><!-- End Foursquare -->
+					{/block:IfFoursquareUsername}
+					
+					{block:IfGitHubUsername}
+					<a href="https://github.com/{text:GitHub Username}" title="GitHub">
+						<img src="http://static.tumblr.com/h1zqhzs/Topmlp5en/github.png" alt="GitHub"/>
+					</a><!-- End GitHub Link -->
+					{/block:IfGitHubUsername}
+					
+					{block:IfGooglePlusUsernumber}
+					<a href="https://plus.google.com/u/1/{text:GooglePlus Usernumber}" title="Google Plus">
+						<img src="http://static.tumblr.com/h1zqhzs/uw1mlp1tr/google.png" alt="GooglePlus Icon"/>
+					</a><!-- End Google Plus Link -->
+					{/block:IfGooglePlusUsernumber}
+					
+					{block:IfLastfmUsername}
+					<a href="http://last.fm/user/{text:Lastfm Username}" title="Last fm">
+						<img src="http://static.tumblr.com/h1zqhzs/IwQmlp1uh/lastfm.png" alt="Last fm Icon"/>
+					</a><!-- End Last fm Link -->
+					{/block:IfLastfmUsername}
+					
+					{block:IfLetterBoxdUsername}
+					<a href="http://letterboxd.com/{text:LetterBoxd Username}" title="LetterBoxd">
+						<img src="http://static.tumblr.com/ubkenek/7JJluywko/letterboxd-icon.png" alt="LetterBoxd Icon"/>
+					</a><!-- End LetterBoxd Link -->
+					{/block:IfLetterBoxdUsername}
+					
+                    {block:IfLinkedInUsername}
+                    <a href="http://http://www.linkedin.com/in/{text:LinkedIn Username}">
+                        <img src="http://static.tumblr.com/h1zqhzs/BWJmlp1v8/linkedin.png" alt="LinkedIn Icon">
+                    </a>
+                    {/block:IfLinkedInUsername}
+                    
+                    
+					{block:IfTwitterUsername}
+					<a href="http://twitter.com/{text:Twitter Username}" title="Twitter">
+						<img src="http://static.tumblr.com/h1zqhzs/roxmlp1q8/twitter.png" alt="Twitter Icon"/>
+					</a><!-- End Twitter Link -->
+					{/block:IfTwitterUsername}
+					
+					{block:IfVimeoUsername}
+					<a href="http://vimeo.com/{text:Vimeo Username}" title="Vimeo">
+						<img src="http://static.tumblr.com/h1zqhzs/oWTmlp1xl/vimeo.png" alt="Vimeo Icon"/>
+					</a><!-- End Vimeo Link -->
+					{/block:IfVimeoUsername}
+										
+					<!-- {block:IfYouTubeUsername}
+					<a href="http://youtube.com/user/{text:YouTube Username}" title="YouTube">
+						<img src="http://static.tumblr.com/ubkenek/c1Gluz2id/youtube-icon.png" alt="YouTube Icon"/>
+					</a>
+					{/block:IfYouTubeUsername} -->
+					
+				</div>
+				<!-- End Social Links -->
             </aside>
 
             <ul id="posts">
@@ -1404,14 +1413,6 @@
                                     {block:Video}{block:ContentSource} floating{/block:ContentSource}{/block:Video}
                                 {/block:IfPlaceTimestampInLeftColumn}
                             ">
-                                {block:Date} 
-                                <li>
-                                    <ul class="post_controls group">
-                                        <li>{ReblogButton size="21"}</li>
-                                        <li>{LikeButton size="21"}</li>
-                                    </ul>
-                                </li>
-                                {/block:Date} 
                                 <li><a href="{Permalink}" class="
                                     timestamp
                                     {block:Text}has_caption{block:Title} with_title{/block:Title}{/block:Text}
@@ -1645,16 +1646,6 @@
                         if ((_posts_loaded > 0) && (_current_page < _total_pages)) {
                             set_trigger();
                             _is_loading = false;
-                            var post_ids = [];
-                            var like_buttons = $('#posts', data).find('.like_button');
-                            for (var i = 0; i < like_buttons.length; i++) {
-                                var button = like_buttons[i];
-                                if ($(button).attr('data-post-id')) {
-                                    post_ids.push($(button).attr('data-post-id'));
-                                }
-                            }
-                            if (post_ids.length > 0) Tumblr.LikeButton.get_status_by_post_ids(post_ids);
-
                         } else {
                             disable_scroll();
                         }
