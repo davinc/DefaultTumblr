@@ -6,8 +6,6 @@
         <meta name="description" content="{block:IndexPage}{block:Description}{MetaDescription}{/block:Description}{/block:IndexPage}{block:PermalinkPage}{block:PostSummary}{PostSummary}{/block:PostSummary}{/block:PermalinkPage}" />
 
         <meta name="color:Accent" content="#4EA3D0"/>
-        <meta name="font:Primary Font" content="'Helvetica Neue', Helvetica, Arial, sans-serif"/>
-        <meta name="font:Secondary Font" content="'Times New Roman', Times, serif"/>
 
         <meta name="if:Two column posts" content="1"/>
 
@@ -40,9 +38,18 @@
 		<meta name="text:Twitter Username" content=""/>
 		<meta name="text:Vimeo Username" content=""/>
 	    <meta name="text:Google Analytics ID" content=""/>
+	    <meta name="text:TypeKit ID" content=""/>
+	    <meta name="text:Primary Font" content="Helvetica Neue"/>
+	    <meta name="text:Secondary Font" content="Times New Roman"/>
 
         <link rel="shortcut icon" href="{Favicon}" />
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}"/>
+
+        <!-- TypeKit -->
+	    {block:IfTypeKitID}
+	    <script type="text/javascript" src="//use.typekit.net/{text:TypeKit ID}.js"></script>
+	    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	    {/block:IfTypeKitID}
 
         <!-- HTML5 Shiv -->
         <!--[if lt IE 9]>
@@ -63,7 +70,7 @@
             body {
                 -webkit-font-smoothing: antialiased;
                 font-size: 15px;
-                font-family: {block:IfPrimaryFont}{Font:Primary Font},{/block:IfPrimaryFont} 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                font-family: {block:IfPrimaryFont}{text:Primary Font},{/block:IfPrimaryFont} 'Helvetica Neue', Helvetica, Arial, sans-serif;
                 line-height: 24px;
                 margin: 0;
                 padding: 0;
@@ -230,7 +237,7 @@
 
             #posts .post .caption a.disquscomments {
                 font-size: 12px;
-                font-family: {block:IfSecondaryFont}{font:Secondary Font},{/block:IfSecondaryFont} 'Times New Roman', Times, serif;
+                font-family: {block:IfSecondaryFont}{text:Secondary Font},{/block:IfSecondaryFont} 'Times New Roman', Times, serif;
                 letter-spacing: 2px;
                 text-transform: uppercase;
                 -webkit-font-smoothing: subpixel-antialiased;
@@ -517,7 +524,7 @@
             .post .post_info {
                 width: auto;
                 font-size: 12px;
-                font-family: {block:IfSecondaryFont}{font:Secondary Font},{/block:IfSecondaryFont} 'Times New Roman', Times, serif;
+                font-family: {block:IfSecondaryFont}{text:Secondary Font},{/block:IfSecondaryFont} 'Times New Roman', Times, serif;
                 letter-spacing: 2px;
                 text-transform: uppercase;
                 list-style-type: none;
@@ -676,7 +683,7 @@
 
             #sidebar .links {
                 font-size: 12px;
-                font-family: {block:IfSecondaryFont}{font:Secondary Font},{/block:IfSecondaryFont} 'Times New Roman', Times, serif;
+                font-family: {block:IfSecondaryFont}{text:Secondary Font},{/block:IfSecondaryFont} 'Times New Roman', Times, serif;
                 letter-spacing: 2px;
                 text-transform: uppercase;
                 list-style-type: none;
@@ -731,7 +738,7 @@
                 width: 700px;
                 color: #4C4C4C;
                 font-size: 12px;
-                font-family: {block:IfSecondaryFont}{font:Secondary Font},{/block:IfSecondaryFont} 'Times New Roman', Times, serif;
+                font-family: {block:IfSecondaryFont}{text:Secondary Font},{/block:IfSecondaryFont} 'Times New Roman', Times, serif;
                 letter-spacing: 2px;
                 text-transform: uppercase;
                 -webkit-font-smoothing: subpixel-antialiased;
