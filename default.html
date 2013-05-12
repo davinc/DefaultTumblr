@@ -79,7 +79,16 @@
             *:active, *:focus { outline-width: 0px; }
             img { max-width: 100% }
             .post .top.media img { width: 100%; }
-            a { text-decoration: none; color: {Color:Accent}; }
+            a { 
+            	text-decoration: none; 
+            	color: {Color:Accent}; 
+            	-webkit-transition: color 0.25s ease-in-out;
+				-moz-transition: color 0.25s ease-in-out;
+				-o-transition: color 0.25s ease-in-out;
+				-ms-transition: color 0.25s ease-in-out;
+				transition: color 0.25s ease-in-out;
+            }
+            
             a img { border-width: 0px; }
             strong { font-weight: bold; }
             em { font-style: italic; }
@@ -158,12 +167,8 @@
             }
 
             #blog_avatar a {
-                width: 48px;
-                height: 48px;
-                {block:IfShowImageShadows}
-                    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, .21);
-                    box-shadow: 0px 1px 3px rgba(0, 0, 0, .21);
-                {/block:IfShowImageShadows}  
+                width: 64px;
+                height: 64px;
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -171,47 +176,11 @@
             }
 
             #blog_avatar img {
-                width: 48px;
-                -webkit-border-radius: 2px;
-                -moz-border-radius: 2px;
-                border-radius: 2px;
-            }
-
-            #blog_avatar a::before {
-                content: " ";
-                width: 46px;
-                height: 46px;
-                -webkit-border-radius: 2px;
-                -moz-border-radius: 2px;
-                border-radius: 2px;
-                border: 1px solid rgba(0,0,0,.1);
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                z-index: 999;
-                display: block;
-            }
-
-            #blog_avatar:hover a {
                 width: 64px;
-                height: 64px;
-                top: -8px;
-                left: -8px;
-            }
-
-            #blog_avatar:hover a img {
-                width: 64px;
-            }
-
-            #blog_avatar:hover a::before {
-                width: 62px;
-                height: 62px;
-            }
-
-            #blog_avatar:active a {
-                top: -7px;
-                -webkit-box-shadow: 0px 0px 1px rgba(0, 0, 0, .21);
-                box-shadow: 0px 0px 1px rgba(0, 0, 0, .21);
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                border-radius: 50%;
+                overflow: hidden;
             }
 
             #posts {
